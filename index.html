@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proximamente - Cendera</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="div_formulario" class="formulario">
+        <div id="cerrar" class="cerrar">
+            <img src="img/x.png" alt="">
+        </div>
+        <div class="content_formulario">
+        <form action="#" method="post" onsubmit="return validarFormulario()" class="form_contact">
+            <div class="user_info">
+                <label for="names">Nombres *</label>
+                <input type="text" id="nombre" name="nombre" pattern="[A-Za-z\s]{3,}" required oninput="cambiarColorNombre()">
+
+                <label for="telefono">Telefono / Celular *</label>
+                <input type="tel" id="telefono" name="telefono" required oninput="cambiarColorTelefono()">
+
+                <label for="email">Correo electronico *</label>
+                <input type="email" id="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" required oninput="cambiarColor()">
+                
+            </div>
+            <input class="button_enviar" type="submit" value="Enviar">
+        </form>
+        </div>
+    </div>
+    <div class="fondo"><img src="img/fondo.jpg" alt=""></div>
+    <main>
+        <div>
+            <div><H1>EN</H1></div>
+            <div><H1>CONSTRUCCIÓN</H1></div>
+        </div>
+        <div>
+            <P>EL SITIO ESTARÁ LISTO PRONTO</P>
+            <img class="barra" src="img/barra2.png" alt="">
+
+        </div>
+        <div>
+            <button id="notificar">Notifícame cuando esté listo</button>
+        </div>   
+    </main>
+    <img class="logo" src="img/Cendera.png" alt="">
+    <footer><p>Copyright © 2023 Cendera - Diseñado por Cendera</p></footer>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var formularioDiv = document.getElementById("div_formulario");
+        var notificarmeBtn = document.getElementById("notificar");
+        var cerrarBtn = document.getElementById("cerrar");
+
+        // Agregar evento al botón "Notificarme"
+        notificarmeBtn.addEventListener("click", function() {
+            formularioDiv.style.display = "flex";
+        });
+
+        // Agregar evento al botón de cerrar
+        cerrarBtn.addEventListener("click", function() {
+            formularioDiv.style.display = "none";
+        });
+    });
+
+
+    function cambiarColor() {
+            var inputEmail = document.getElementById('email');
+            var pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+            if (pattern.test(inputEmail.value)) {
+                // Campo válido
+                inputEmail.setCustomValidity(''); // Limpiar mensaje de validación personalizado
+                inputEmail.style.borderBottom = '1px solid #00e21e';
+            } else {
+                // Campo inválido
+                inputEmail.setCustomValidity('Ingrese una dirección de correo electrónico válida');
+                inputEmail.style.borderBottom = '2px solid rgb(207, 11, 11)';
+            }
+        }
+    
+function cambiarColorTelefono() {
+            var inputTelefono = document.getElementById('telefono');
+            var patternTelefono = /^[0-9]{10,}$/;
+
+            if (patternTelefono.test(inputTelefono.value)) {
+                // Campo válido
+                inputTelefono.setCustomValidity(''); // Limpiar mensaje de validación personalizado
+                inputTelefono.style.borderBottom = '1px solid #00e21e';
+            } else {
+                // Campo inválido
+                inputTelefono.setCustomValidity('Ingrese un número de teléfono válido');
+                inputTelefono.style.borderBottom = '2px solid rgb(207, 11, 11)';
+            }
+        }
+        function cambiarColorNombre() {
+            var inputNombre = document.getElementById('nombre');
+            var patternNombre = /^[A-Za-z\s]{3,}$/;
+
+            if (patternNombre.test(inputNombre.value)) {
+                // Campo válido
+                inputNombre.setCustomValidity(''); // Limpiar mensaje de validación personalizado
+                inputNombre.style.borderBottom = '1px solid #00e21e';
+            } else {
+                // Campo inválido
+                inputNombre.setCustomValidity('Nombre muy corto');
+                inputNombre.style.borderBottom = '2px solid rgb(207, 11, 11)';
+            }
+        }
+
+
+        function validarFormulario() {
+            var form = document.forms[0];
+            
+            // Verificar si los campos son válidos
+            if (form.checkValidity()) {
+                // Todos los campos son válidos
+                alert('Datos enviados con éxito');
+                form.submit(); // Enviar formulario
+                return false; // Evitar el envío del formulario por el navegador
+            } else {
+                // Al menos un campo es inválido
+                alert('Por favor, completa todos los campos correctamente antes de enviar el formulario.');
+                return false; // Evitar el envío del formulario por el navegador
+            }
+        }
+        
+</script>
+</html>
